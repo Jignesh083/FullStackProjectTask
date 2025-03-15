@@ -1,0 +1,153 @@
+<div class="body">
+  <div class="form-container">
+    <h2>Registration Form</h2>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+
+      <!-- Name -->
+      <label class="form-label">Name:</label>
+      <input type="text" formControlName="name" class="form-input"
+        [ngClass]="{'error-border': submitted && registrationForm.get('name')?.invalid}">
+      <small *ngIf="submitted && registrationForm.get('name')?.errors?.['required']">
+        * Name is required.
+      </small>
+      <small *ngIf="submitted && registrationForm.get('name')?.errors?.['minlength']">
+        * Name must be at least 3 characters.
+      </small>
+
+      <!-- Email -->
+      <label class="form-label">Email:</label>
+      <input type="email" formControlName="email" class="form-input"
+        [ngClass]="{'error-border': submitted && registrationForm.get('email')?.invalid}">
+      <small *ngIf="submitted && registrationForm.get('email')?.errors?.['required']">
+        * Email is required.
+      </small>
+      <small *ngIf="submitted && registrationForm.get('email')?.errors?.['email']">
+        * Enter a valid email.
+      </small>
+
+      <!-- Password -->
+      <label class="form-label">Password:</label>
+      <input type="password" formControlName="password" class="form-input"
+        [ngClass]="{'error-border': submitted && registrationForm.get('password')?.invalid}">
+      <small *ngIf="submitted && registrationForm.get('password')?.errors?.['required']">
+        * Password is required.
+      </small>
+      <small *ngIf="submitted && registrationForm.get('password')?.errors?.['minlength']">
+        * Password must be at least 6 characters.
+      </small>
+
+      <!-- Phone Number -->
+      <label class="form-label">Phone Number:</label>
+      <input type="text" formControlName="phone" class="form-input"
+        [ngClass]="{'error-border': submitted && registrationForm.get('phone')?.invalid}">
+      <small *ngIf="submitted && registrationForm.get('phone')?.errors?.['required']">
+        * Phone number is required.
+      </small>
+      <small *ngIf="submitted && registrationForm.get('phone')?.errors?.['pattern']">
+        * Enter a valid 10-digit phone number.
+      </small>
+
+      <!-- Date of Birth -->
+      <label class="form-label">Date of Birth:</label>
+      <input type="date" formControlName="dob" class="form-input"
+        [ngClass]="{'error-border': submitted && registrationForm.get('dob')?.invalid}">
+      <small *ngIf="submitted && registrationForm.get('dob')?.errors?.['required']">
+        * Date of Birth is required.
+      </small>
+
+      <!-- Gender -->
+      <label class="form-label">Gender:</label>
+      <div class="gender-container">
+        <label>
+          <input type="radio" value="Male" formControlName="gender"> Male
+        </label>
+        <label>
+          <input type="radio" value="Female" formControlName="gender"> Female
+        </label>
+      </div>
+      <small *ngIf="submitted && registrationForm.get('gender')?.errors?.['required']">
+        * Please select gender.
+      </small>
+
+      <!-- Address -->
+      <label class="form-label">Address:</label>
+      <textarea formControlName="address" class="form-textarea"
+        [ngClass]="{'error-border': submitted && registrationForm.get('address')?.invalid}"></textarea>
+      <small *ngIf="submitted && registrationForm.get('address')?.errors?.['required']">
+        * Address is required.
+      </small>
+
+      <!-- Country (Dropdown) -->
+      <label class="form-label">Country:</label>
+      <select formControlName="country" class="form-input"
+        [ngClass]="{'error-border': submitted && registrationForm.get('country')?.invalid}">
+        <option value="">Select Country</option>
+        <option value="India">India</option>
+        <option value="USA">USA</option>
+        <option value="UK">UK</option>
+      </select>
+      <small *ngIf="submitted && registrationForm.get('country')?.errors?.['required']">
+        * Please select a country.
+      </small>
+
+      <!-- ZIP File Upload -->
+      <label class="form-label">Upload ZIP File:</label>
+      <input type="file" (change)="onFileChange($event)" class="form-input">
+      <small *ngIf="zipFileName">{{ zipFileName }}</small>
+      <small *ngIf="submitted && registrationForm.get('zipFile')?.errors?.['required']">
+        * Only ZIP file is allowed.
+      </small>
+
+
+      <!-- State Dropdown -->
+    <label class="form-label">State:</label>
+    <select formControlName="state" class="form-input" (change)="onStateChange()">
+      <option value="">Select State</option>
+      <option *ngFor="let state of states" [value]="state.name">{{ state.name }}</option>
+    </select>
+    <small *ngIf="submitted && registrationForm.get('state')?.errors?.['required']">
+      * Please select a state.
+    </small>
+
+    <!-- District Dropdown -->
+    <label class="form-label">District:</label>
+    <select formControlName="district" class="form-input" (change)="onDistrictChange()" [disabled]="districts.length === 0">
+      <option value="">Select District</option>
+      <option *ngFor="let district of districts" [value]="district.name">{{ district.name }}</option>
+    </select>
+    <small *ngIf="submitted && registrationForm.get('district')?.errors?.['required']">
+      * Please select a district.
+    </small>
+
+    <!-- Taluka Dropdown -->
+    <label class="form-label">Taluka:</label>
+    <select formControlName="taluka" class="form-input" (change)="onTalukaChange()" [disabled]="talukas.length === 0">
+      <option value="">Select Taluka</option>
+      <option *ngFor="let taluka of talukas" [value]="taluka.name">{{ taluka.name }}</option>
+    </select>
+    <small *ngIf="submitted && registrationForm.get('taluka')?.errors?.['required']">
+      * Please select a taluka.
+    </small>
+
+    <!-- Village Dropdown -->
+    <label class="form-label">Village:</label>
+    <select formControlName="village" class="form-input" [disabled]="villages.length === 0">
+      <option value="">Select Village</option>
+      <option *ngFor="let village of villages" [value]="village">{{ village }}</option>
+    </select>
+    <small *ngIf="submitted && registrationForm.get('village')?.errors?.['required']">
+      * Please select a village.
+    </small>
+
+
+
+
+
+      <!-- Submit Button -->
+      <button type="submit" class="form-button">
+        Submit
+      </button>
+
+    </form>
+  </div>
+</div>
