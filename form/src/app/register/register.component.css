@@ -1,0 +1,85 @@
+.body{
+  margin: 0;
+  padding: 0;
+  background-color: slategray;
+}
+/* Main Form Container */
+.form-container {
+  width: 400px;
+  margin: auto;
+  padding: 20px;
+  border-radius: 8px;
+  background: lightsteelblue;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+
+}
+
+/* Form Labels */
+.form-label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block;
+}
+
+/* Input, Select, and Textarea */
+.form-input,
+.form-textarea {
+  width: 95%;
+  padding: 8px;
+  margin-top: 5px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-textarea {
+  resize: none;
+}
+
+/* Gender Container */
+.gender-container {
+  display: flex;
+  gap: 20px; /* Space between radio buttons */
+  align-items: center;
+  margin-top: 5px;
+}
+
+.gender-container label {
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between radio button and text */
+}
+
+.gender-container input {
+  accent-color: #5555; /* Green color for selected radio button */
+  cursor: pointer;
+}
+
+/* Terms and Conditions */
+.terms-container {
+  margin-top: 10px;
+}
+
+/* Button Styling */
+.form-button {
+  width: 99%;
+  margin-top: 15px;
+  padding: 10px;
+  border: none;
+  background-color: cornflowerblue;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.form-button:hover {
+  background-color: slategray;
+}
+
+/* Error Message */
+small {
+  color: red;
+  font-size: 12px;
+  display: block;
+  margin-top: 5px;
+}

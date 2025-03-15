@@ -1,0 +1,87 @@
+<div class="body">
+  <div class="form-container">
+    <h2>Registration Form</h2>
+    <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <!-- Name -->
+      <label class="form-label">Name:</label>
+      <input type="text" formControlName="name" class="form-input">
+      <small *ngIf="submitted && registrationForm.get('name')?.errors">
+        Name is required (min 3 characters).
+      </small>
+
+      <!-- Email -->
+      <label class="form-label">Email:</label>
+      <input type="email" formControlName="email" class="form-input">
+      <small *ngIf="submitted && registrationForm.get('email')?.errors">
+        Valid email is required.
+      </small>
+
+      <!-- Password -->
+      <label class="form-label">Password:</label>
+      <input type="password" formControlName="password" class="form-input">
+      <small *ngIf="submitted && registrationForm.get('password')?.errors">
+        Password must be at least 6 characters.
+      </small>
+
+      <!-- Phone Number -->
+      <label class="form-label">Phone Number:</label>
+      <input type="text" formControlName="phone" class="form-input">
+      <small *ngIf="submitted && registrationForm.get('phone')?.errors">
+        Enter a valid 10-digit phone number.
+      </small>
+
+      <!-- Date of Birth -->
+      <label class="form-label">Date of Birth:</label>
+      <input type="date" formControlName="dob" class="form-input">
+      <small *ngIf="submitted && registrationForm.get('dob')?.errors">
+        Date of Birth is required.
+      </small>
+
+      <!-- Gender -->
+      <label class="form-label">Gender:</label>
+      <div class="gender-container">
+        <label>
+          <input type="radio" value="Male" formControlName="gender"> Male
+        </label>
+        <label>
+          <input type="radio" value="Female" formControlName="gender"> Female
+        </label>
+      </div>
+      <small *ngIf="submitted && registrationForm.get('gender')?.errors">
+        Please select gender.
+      </small>
+
+      <!-- Address -->
+      <label class="form-label">Address:</label>
+      <textarea formControlName="address" class="form-textarea"></textarea>
+      <small *ngIf="submitted && registrationForm.get('address')?.errors">
+        Address is required.
+      </small>
+
+      <!-- Country (Dropdown) -->
+      <label class="form-label">Country:</label>
+      <select formControlName="country" class="form-input">
+        <option value="">Select Country</option>
+        <option value="India">India</option>
+        <option value="USA">USA</option>
+        <option value="UK">UK</option>
+      </select>
+      <small *ngIf="submitted && registrationForm.get('country')?.errors">
+        Please select a country.
+      </small>
+
+      <!-- ZIP File Upload -->
+      <label class="form-label">Upload ZIP File:</label>
+      <input type="file" (change)="onFileChange($event)" class="form-input">
+      <small *ngIf="zipFileName">{{ zipFileName }}</small>
+      <small *ngIf="submitted && registrationForm.get('zipFile')?.errors">
+        Only ZIP file is allowed.
+      </small>
+
+      <!-- Submit Button -->
+      <button (click)="onSubmit()" type="submit" class="form-button">Submit</button>
+
+    </form>
+  </div>
+</div>
